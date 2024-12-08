@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h2>Detalle de Orden</h2>
+
+        <p><strong>Cliente:</strong> {{ orden.cliente }}</p>
+        <p><strong>Empleado:</strong> {{ orden.empleado }}</p>
+        <p><strong>Fecha de creación:</strong> {{ orden.fecha_creacion }}</p>
+        <p><strong>Estatus:</strong> {{ orden.estatus }}</p>
+        <p><strong>Total:</strong> ${{ orden.calcular_total }}</p>
+
+        <h3>Prendas</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Prenda</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for prenda in prendas %}
+        <tr>
+            <td>{{ prenda.prenda }}</td>
+            <td>{{ prenda.cantidad }}</td>
+            <td>${{ prenda.prenda.precio|floatformat:2 }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'ordenes:listar_ordenes' %}">Volver a la lista</a>
+</div>
+{% endblock %}

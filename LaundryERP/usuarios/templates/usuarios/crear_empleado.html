@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Crear Empleados{% endblock %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+    <div class="container">
+<form method="post">
+    {% csrf_token %}
+    <h2>Crear Empleado</h2>
+    
+    <!-- Mostrar formulario del empleado (y usuario) -->
+    {{ form|crispy }}
+    
+    <button type="submit" class="btn btn-success btn-md">Crear Empleado</button>
+</form>
+
+{% endblock %}

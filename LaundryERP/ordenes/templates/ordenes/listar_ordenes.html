@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Órdenes de Servicio</h1>
+    <a href="{% url 'ordenes:crear_orden' %}" class="btn btn-primary mb-3">Crear Nueva Orden</a>
+    <table class="table table-bordered table-striped table-hover text-center">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Empleado</th>
+                <th>Estatus</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for orden in ordenes %}
+            <tr>
+                <td>{{ orden.id }}</td>
+                <td>{{ orden.cliente }}</td>
+                <td>{{ orden.empleado }}</td>
+                <td>{{ orden.estatus }}</td>
+                <td>{{ orden.fecha_creacion|date:"d/m/Y H:i" }}</td>
+                <td>${{ orden.calcular_total|floatformat:2 }}</td>
+                <td>
+                    {% if orden.estatus == "Completada" %}
+                        <a href="{% url 'ventas:agregar_venta_desde_orden' orden.id %}" class="btn btn-success btn-sm">
+                            Registrar como Venta
+                        </a>
+                    {% else %}
+                        <span class="text-muted">Venta No disponible</span>
+                    {% endif %}
+                    <a href="{% url 'ordenes:detalle_orden' orden.id %}" class="btn btn-info btn-sm">Ver</a>
+                    <a href="{% url 'ordenes:actualizar_orden' orden.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <form method="post" action="{% url 'ordenes:eliminar_orden' orden.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% if messages %}
+<div class="container mt-3">
+    {% for message in messages %}
+    <div 
+        class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" 
+        role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}
+

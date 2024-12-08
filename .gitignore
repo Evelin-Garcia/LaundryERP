@@ -1,0 +1,9 @@
+#entorno virtual del proyecto (cambiar nombre si clonamos proyecto y cambiamos el nombre en el nuestro)
+Entorno/
+*.pyc
+__pycache__/
+#archivos de base de datos que trae por defecto django
+* .sqlite3
+
+#configuracion sensible
+.env

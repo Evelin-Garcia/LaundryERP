@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+    <div class="container">
+        <h2>Actualizar Orden</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    
+    <h3>Prendas</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Prenda</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prenda in prendas %}
+        <tr>
+            <td>{{ prenda.prenda }}</td>
+            <td>{{ prenda.cantidad }}</td>
+        </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <button type="submit" class="btn btn-success btn-sm" >Actualizar Orden</button><br><br>
+</form>
+
+<a href="{% url 'ordenes:listar_ordenes' %}">Volver a la lista</a>
+
+</div>
+{% endblock %}

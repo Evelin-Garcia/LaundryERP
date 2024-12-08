@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Empleados{% endblock %}
+{% block content %}
+
+<h1>Lista de Empleados</h1>
+<table class="table table-bordered table-striped table-hover text-center">
+    <thead class="table-light">
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Rol</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for empleado in empleados %}
+        <tr>
+          <td>{{ empleado.usuario.first_name }} {{ empleado.usuario.last_name }}</td>
+          <td>{{ empleado.usuario.email }}</td>
+          <td>{{ empleado.get_rol_display }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">No hay empleados registrados.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a class="btn btn-success btn-md" href="{% url 'usuarios:crear_empleado' %} ">Agregar Empleado</a>
+{% endblock %}

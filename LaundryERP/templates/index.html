@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Inicio | LaundryERP{% endblock %}
+
+{% block content %}
+<header class="text-center">
+    <br><h1>Bienvenido a LaundryERP</h1><br>
+</header>
+
+<div class="container mt-4">
+    <div class="row align-items-center">
+        <!-- Imagen izquierda -->
+        <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+            <img src="{% static 'img/lav2.jpg' %}" alt="Lavandería izquierda" class="img-fluid rounded shadow">
+        </div>
+
+        <!-- Jumbotron central -->
+        <div class="col-lg-8 col-md-6 col-sm-12 text-center">
+            <div class="jumbotron bg-secondary p-5 rounded">
+                <p class="display-6">Sistema de gestión para lavanderías</p>
+                <hr class="my-4">
+            </div>
+        </div>
+
+        <!-- Imagen derecha -->
+        <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+            <img src="{% static 'img/lavanderia.jpg' %}" alt="Lavandería derecha" class="img-fluid rounded shadow">
+        </div>
+    </div>
+
+    <!-- Botones debajo del Jumbotron -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'ordenes:listar_ordenes' %}" class="btn btn-custom btn-lg w-100 hover-link">
+                <i class="bi bi-basket"></i> Gestionar Órdenes
+            </a>
+        </div>
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'usuarios:lista_clientes' %}" class="btn btn-custom btn-lg w-100 hover-link">
+                <i class="bi bi-people"></i> Ver Clientes
+            </a>
+        </div>
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'reportes:index' %}" class="btn btn-custom btn-lg w-100 hover-link">
+                <i class="bi bi-graph-up"></i> Generar Reportes
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

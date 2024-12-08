@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Reportes{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Panel de Reportes</h1>
+    <p class="lead text-center">Selecciona el tipo de reporte que deseas generar.</p>
+    <div class="row mt-4">
+        <div class="  d-flex justify-content-center">
+            <a href="{% url 'reportes:reporte_ventas' %}" class="btn btn-primary w-100 me-4">Generar Reporte Ventas</a><br><br>
+            <a href="{% url 'reportes:historial_ventas' %}" class="btn btn-primary w-100">Generar Historial Clientes</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

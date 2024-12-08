@@ -1,0 +1,17 @@
+body{
+    background-color: lightgrey;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-custom {
+    background-color: orange;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Animación suave */
+}
+

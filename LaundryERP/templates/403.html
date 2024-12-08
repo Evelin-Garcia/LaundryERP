@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}403 - Prohibido{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    
+</head>
+<body>
+    <div class="container mt-4 text-center bg-warning bg-opacity-25 ">
+        <br><h1>Acceso Denegado</h1><br>
+        <h5>No tienes permisos para acceder a esta página. Si crees que esto es un error, inicia sesión o contacta con el administrador.</h5><br>
+        <a href="{% url 'index' %}">Volver al inicio</a><br><br><br>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

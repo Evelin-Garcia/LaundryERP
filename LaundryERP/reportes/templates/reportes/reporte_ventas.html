@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1>Reporte de Ventas</h1>
+  <form method="get" class="row align-items-end gy-2">
+    {% csrf_token %}
+
+      <div class="col-md-2">
+        <label for="fecha_inicio">Fecha Inicio:</label>
+        {{ form.fecha_inicio }}
+      </div>
+
+      <div class="col-md-2">
+        <label for="fecha_fin">Fecha Fin:</label>
+        {{ form.fecha_fin }}
+      </div>
+
+      <div class="col-md-2">
+        <label for="cliente">Cliente:</label>
+        {{ form.cliente }}
+      </div>
+
+      <div class="col-md-2">
+        <label for="empleado">Empleado:</label>
+        {{ form.empleado }}
+      </div>
+
+      <div class="col-md-2">
+        <label for="prenda">Tipo de Prenda:</label>
+        {{ form.prenda }}
+      </div>
+
+      <div class="col-md-2 text-end">
+        <button type="submit" class="btn btn-success">Filtrar</button>
+      </div><br><br>
+  </form>
+
+  
+  {% if ventas %}
+  <table class="table table-bordered table-striped table-hover text-center mt-4">
+    <thead class="table-light">
+      <tr>
+        <th>ID Orden de Servicio</th>
+        <th>Cliente</th>
+        <th>Empleado</th>
+        <th>Fecha de Creación</th>
+        <th>Estado</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for venta in ventas %}
+        <tr>
+          <td>{{ venta.orden_servicio.id }}</td>
+          <td>{{ venta.orden_servicio.cliente.nombre }}</td>
+          <td>{{ venta.orden_servicio.empleado.usuario.first_name }} {{ venta.orden_servicio.empleado.usuario.last_name }}</td>
+          <td>{{ venta.fecha_venta }}</td>
+          <td>{{ venta.orden_servicio.estatus }}</td>
+          <td>${{ venta.monto_total }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <h2>Total de Ventas: {{ total_ventas }}</h2>
+{% else %}
+  <p class="text-danger">{{ mensaje }}</p>
+{% endif %}
+<br><br><a href="{% url 'reportes:index' %}" class="btn btn-primary ">Panel de Reportes</a><br><br>
+</div>
+{% endblock %}

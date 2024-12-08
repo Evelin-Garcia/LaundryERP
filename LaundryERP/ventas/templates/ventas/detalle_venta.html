@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+<h1>Detalles de Venta</h1>
+<ul>
+    <li><strong>ID:</strong> {{ venta.id }}</li>
+    <li><strong>Orden de Servicio:</strong> {{ venta.orden_servicio }}</li>
+    <li><strong>Monto Total:</strong> ${{ venta.monto_total }}</li>
+    <li><strong>Método de Pago:</strong> {{ venta.metodo_pago }}</li>
+    
+</ul>
+<a href="{% url 'ventas:listar_ventas' %}" class="btn btn-secondary">Volver</a>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Listado Clientes{% endblock %}
+{% block content %} 
+<div class="container">
+<h1>Lista de Clientes</h1>
+<table class="table table-bordered table-striped table-hover text-center">
+    <thead class="table-light">
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.nombre }}</td>
+                    <td>{{ cliente.correo }}</td>
+                    <td>{{ cliente.telefono }}</td>
+                    <td>{{ cliente.direccion }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<br>
+{% if user.empleado.rol == 'admin' %}
+    <a class="btn btn-success btn-sm" href="{% url 'usuarios:index_cliente' %}">Agregar Cliente</a>
+</div>
+{% endif %}
+{% endblock %}

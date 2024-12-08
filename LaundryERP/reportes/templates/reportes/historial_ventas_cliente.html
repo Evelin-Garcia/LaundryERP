@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1 class="text-center">Historial de Ventas del Cliente</h1>
+  {% load crispy_forms_tags %} 
+  <form method="get">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+  </form>
+  
+  {% if ventas_cliente %}
+    <div class="table-responsive mt-3">
+      <table class="table table-bordered table-hover text-center">
+        <thead class="table-light">
+          <tr>
+            <th>ID Historial</th>
+            <th>ID Venta</th>
+            <th>Fecha de Venta</th>
+            <th>Monto Total</th>
+            <th>Método de Pago</th>
+            <th>Fecha de Registro</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for venta in ventas_cliente %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ venta.id }}</td>
+              <td>{{ venta.fecha_venta }}</td>
+              <td>${{ venta.monto_total }}</td>
+              <td>{{ venta.metodo_pago }}</td>
+              <td>{{ venta.fecha_venta }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p>No se encontraron ventas para el cliente seleccionado.</p>
+  {% endif %}
+</div>
+
+{% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+<a href="{% url 'ordenes:listar_ordenes' %}" class="btn btn-warning ">Ver Ordenes de Servicio</a><br><br>
+<br><br><a href="{% url 'reportes:index' %}" class="btn btn-success ">Panel de Reportes</a><br><br>
+
+{% endblock %}
