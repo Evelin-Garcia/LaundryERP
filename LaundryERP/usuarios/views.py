@@ -3,6 +3,7 @@ from .forms import ClienteForm, EmpleadoForm, LoginForm
 from .models import Empleado, Cliente
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib import messages
 
 
 # Create your views here.
@@ -16,7 +17,8 @@ def login_empleado(request):
         
         if usuario is not None:
             login(request, usuario)
-            return redirect('index')  # Cambia a la ruta correspondiente.
+            messages.success(request, 'Inicio de Sesión exitoso')
+            return redirect('index')  
         else:
             # Agregar mensaje de error si las credenciales no son válidas.
             form.add_error(None, "Usuario o contraseña incorrectos.")
@@ -25,7 +27,8 @@ def login_empleado(request):
 
 def logout_empleado(request):
     logout(request)
-    return redirect('usuarios:login')  # Redirect to login page if logout successful.
+    messages.success(request, 'Sesion cerrada con éxito')
+    return redirect('usuarios:login')  
 
 def is_admin(usuario):
     try:

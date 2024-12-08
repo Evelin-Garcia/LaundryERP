@@ -145,3 +145,9 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 #Rutas para el login de inicio de sesión
 LOGIN_URL= '/error/'
 LOGIN_REDIRECT_URL='/' #la página q deseo q vea el usuario cuando el logeo es exitoso
+
+#configuración del backend de sesión
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_AGE = 300  #se configura la duración de la sesion en segundos
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = True
